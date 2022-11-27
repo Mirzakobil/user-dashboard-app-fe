@@ -42,15 +42,14 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Container>
-        <Routes>
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route element={<PrivateRoute />}>
-            <Route exact path="/" element={<Main />} />
-          </Route>
-        </Routes>
-      </Container>
+
+      <Routes>
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        <Route element={<PrivateRoute />}>
+          <Route exact path="/" element={<Main />} />
+        </Route>
+      </Routes>
     </>
   );
 }
