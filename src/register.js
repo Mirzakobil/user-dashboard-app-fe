@@ -12,7 +12,7 @@ export default function Register() {
     // set configurations
     const configuration = {
       method: 'post',
-      url: 'http://localhost:3000/register',
+      url: 'https://user-dashboard-api.onrender.com/register',
       data: {
         email,
         password,

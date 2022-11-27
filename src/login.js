@@ -12,7 +12,7 @@ export default function Login() {
   const handleSubmit = (e) => {
     const configuration = {
       method: 'post',
-      url: 'http://localhost:3000/login',
+      url: 'https://user-dashboard-api.onrender.com/login',
       data: {
         email,
         password,
