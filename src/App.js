@@ -1,24 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
+import { Container, Col, Row } from 'react-bootstrap';
+import Register from './register';
+import Login from './login';
+import Main from './main';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+import PrivateRoute from './protected';
 
 function App() {
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+    window.location.href = '/';
+  };
+  const token = localStorage.getItem('token');
+  const email = localStorage.getItem('email');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+        <Container>
+          <Navbar.Brand href="/">Task4</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse
+            id="responsive-navbar-nav"
+            className="justify-content-end"
+          >
+            <Nav>
+              {!token && <Nav.Link href="/login">Login</Nav.Link>}
+              {!token && <Nav.Link href="register">Register</Nav.Link>}
+              {token && <p className="mt-2">{email}</p>}
+              {token && (
+                <Nav.Link href="" onClick={(e) => logoutHandler(e)}>
+                  Logout
+                </Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Container>
+        <Routes>
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route element={<PrivateRoute />}>
+            <Route exact path="/" element={<Main />} />
+          </Route>
+        </Routes>
+      </Container>
+    </>
   );
 }
 
