@@ -4,6 +4,8 @@ import { useState } from 'react';
 import axios from 'axios';
 
 export default function Register() {
+  const apiLink1 = 'https://user-dashboard-api.onrender.com';
+  const apiLink2 = 'http://localhost:4000';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -12,7 +14,7 @@ export default function Register() {
     // set configurations
     const configuration = {
       method: 'post',
-      url: 'https://user-dashboard-api.onrender.com/register',
+      url: `${apiLink1}/register`,
       data: {
         email,
         password,

@@ -8,6 +8,8 @@ import axios from 'axios';
 //import user from '../../backend/models/user';
 
 const userTable = () => {
+  const apiLink1 = 'https://user-dashboard-api.onrender.com';
+  const apiLink2 = 'http://localhost:4000';
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState([]);
   const [pageSize, setPageSize] = useState(7);
@@ -16,7 +18,7 @@ const userTable = () => {
     for (const id of checked) {
       const configuration = {
         method: 'delete',
-        url: `https://user-dashboard-api.onrender.com/${id}`,
+        url: `${apiLink1}/${id}`,
         data: {},
       };
       axios(configuration)
@@ -30,10 +32,10 @@ const userTable = () => {
     window.location.href = '/';
   };
   const handleBlock = () => {
-    for (const id of checked) {
+    checked.forEach((e) => {
       const configuration = {
         method: 'put',
-        url: `https://user-dashboard-api.onrender.com/block/${id}`,
+        url: `${apiLink1}/block/${e}`,
         data: {},
       };
       axios(configuration)
@@ -43,9 +45,9 @@ const userTable = () => {
         .catch((error) => {
           console.log(error.response.data.message);
         });
-    }
-    for (const user of users) {
-      if (user._id === localStorage.getItem('id')) {
+    });
+    checked.forEach((e) => {
+      if (e === localStorage.getItem('id')) {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
         localStorage.removeItem('email');
@@ -53,13 +55,13 @@ const userTable = () => {
       } else {
         window.location.href = '/';
       }
-    }
+    });
   };
   const handleUnblock = () => {
     for (const id of checked) {
       const configuration = {
         method: 'put',
-        url: `https://user-dashboard-api.onrender.com/unblock/${id}`,
+        url: `${apiLink1}/unblock/${id}`,
         data: {},
       };
       axios(configuration)
@@ -83,7 +85,7 @@ const userTable = () => {
   ];
 
   useEffect(() => {
-    fetch('https://user-dashboard-api.onrender.com/users/')
+    fetch(`${apiLink1}/users/`)
       .then((response) => response.json())
       .then((json) => setUsers(json));
   }, []);
