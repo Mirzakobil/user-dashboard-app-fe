@@ -14,7 +14,7 @@ export default function Register() {
     // set configurations
     const configuration = {
       method: 'post',
-      url: `${apiLink1}/register`,
+      url: `${apiLink1}/api/register`,
       data: {
         email,
         password,
