@@ -31,7 +31,7 @@ function App() {
           >
             <Nav>
               {!token && <Nav.Link href="/login">Login</Nav.Link>}
-              {!token && <Nav.Link href="register">Register</Nav.Link>}
+              {!token && <Nav.Link href="/register">Register</Nav.Link>}
               {token && <p className="mt-2">{email}</p>}
               {token && (
                 <Nav.Link href="" onClick={(e) => logoutHandler(e)}>
