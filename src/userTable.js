@@ -27,7 +27,7 @@ const userTable = () => {
           console.log(error.response.data.message);
         });
     }
-    setTimeout((window.location.href = '/'), 1000);
+    window.location.href = '/';
   };
   const handleBlock = () => {
     for (const id of checked) {
@@ -51,7 +51,7 @@ const userTable = () => {
         localStorage.removeItem('email');
         window.location.href = '/login';
       } else {
-        setTimeout((window.location.href = '/'), 1000);
+        window.location.href = '/';
       }
     }
   };
@@ -70,7 +70,7 @@ const userTable = () => {
           console.log(error.response.data.message);
         });
     }
-    setTimeout((window.location.href = '/'), 2000);
+    window.location.href = '/';
   };
 
   const columns = [
