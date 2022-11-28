@@ -5,12 +5,24 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Register from './register';
+import Login from './login';
+import Main from './main';
+import PrivateRoute from './protected';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <App />
     <BrowserRouter>
-      <App />
+      <Routes>
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        <Route element={<PrivateRoute />}>
+          <Route exact path="/" element={<Main />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );

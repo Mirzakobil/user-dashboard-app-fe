@@ -43,13 +43,19 @@ function App() {
         </Container>
       </Navbar>
 
+      {/* 
       <Routes>
-        <Route exact path="/login" element={<Login />} />
+        <Route path="/" element={<div>hello</div>}>
+          <Route path="/main" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route> */}
+      {/* <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
         <Route element={<PrivateRoute />}>
           <Route exact path="/" element={<Main />} />
-        </Route>
-      </Routes>
+        </Route> */}
+      {/* </Routes> */}
     </>
   );
 }
