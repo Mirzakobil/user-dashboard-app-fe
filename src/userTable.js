@@ -14,7 +14,7 @@ const userTable = () => {
   const [pageSize, setPageSize] = useState(7);
 
   const handleDelete = (e) => {
-    for (const id of checked) {
+    checked.forEach((id) => {
       const configuration = {
         method: 'delete',
         url: `${apiLink1}/${id}`,
@@ -40,7 +40,7 @@ const userTable = () => {
         .catch((error) => {
           console.log(error.response.data.message);
         });
-    }
+    });
   };
   const handleBlock = () => {
     checked.forEach((e) => {
@@ -72,7 +72,7 @@ const userTable = () => {
     });
   };
   const handleUnblock = () => {
-    for (const id of checked) {
+    checked.forEach((id) => {
       const configuration = {
         method: 'put',
         url: `${apiLink1}/unblock/${id}`,
@@ -87,7 +87,7 @@ const userTable = () => {
         .catch((error) => {
           console.log(error.response.data.message);
         });
-    }
+    });
   };
 
   const columns = [
