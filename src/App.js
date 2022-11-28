@@ -30,8 +30,8 @@ function App() {
             className="justify-content-end"
           >
             <Nav>
-              {!token && <a href="/login">Login</a>}
-              {!token && <a href="/register">Register</a>}
+              {!token && <Nav.Link href="/login">Login</Nav.Link>}
+              {!token && <Nav.Link href="/register">Register</Nav.Link>}
               {token && <p className="mt-2">{email}</p>}
               {token && (
                 <Nav.Link href="" onClick={(e) => logoutHandler(e)}>

@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-//import user from '../../backend/models/user';
 
 const userTable = () => {
   const apiLink1 = 'https://user-dashboard-api.onrender.com';
@@ -23,13 +22,25 @@ const userTable = () => {
       };
       axios(configuration)
         .then(() => {
+          if (id === localStorage.getItem('id')) {
+            console.log(id);
+            console.log(localStorage.getItem('id'));
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            localStorage.removeItem('email');
+            setTimeout(() => {
+              window.location.href = '/';
+            }, 2000);
+          }
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 2000);
           console.log('user deleted');
         })
         .catch((error) => {
           console.log(error.response.data.message);
         });
     }
-    window.location.href = '/';
   };
   const handleBlock = () => {
     checked.forEach((e) => {
@@ -40,21 +51,24 @@ const userTable = () => {
       };
       axios(configuration)
         .then(() => {
+          if (e === localStorage.getItem('id')) {
+            console.log(e);
+            console.log(localStorage.getItem('id'));
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            localStorage.removeItem('email');
+            setTimeout(() => {
+              window.location.href = '/';
+            }, 2000);
+          }
           console.log('user blocked');
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 2000);
         })
         .catch((error) => {
           console.log(error.response.data.message);
         });
-    });
-    checked.forEach((e) => {
-      if (e === localStorage.getItem('id')) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('id');
-        localStorage.removeItem('email');
-        window.location.href = '/login';
-      } else {
-        window.location.href = '/';
-      }
     });
   };
   const handleUnblock = () => {
@@ -66,13 +80,14 @@ const userTable = () => {
       };
       axios(configuration)
         .then(() => {
+          window.location.href = '/';
+
           console.log('user unblocked');
         })
         .catch((error) => {
           console.log(error.response.data.message);
         });
     }
-    window.location.href = '/';
   };
 
   const columns = [
